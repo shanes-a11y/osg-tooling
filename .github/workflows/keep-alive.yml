@@ -1,0 +1,27 @@
+name: Streamlit Keep Alive
+
+on:
+  schedule:
+    # Every 6 hours: midnight, 6am, noon, 6pm UTC
+    - cron: "0 0,6,12,18 * * *"
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Ping app
+        run: python keep_alive.py
