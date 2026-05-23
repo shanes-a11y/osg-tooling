@@ -2,8 +2,8 @@ name: Streamlit Keep Alive
 
 on:
   schedule:
-    # Every 6 hours: midnight, 6am, noon, 6pm UTC
-    - cron: "0 0,6,12,18 * * *"
+    # Every 3 hours: 12am, 3am, 6am, 9am, noon, 3pm, 6pm, 9pm UTC
+    - cron: "0 0,3,6,9,12,15,18,21 * * *"
   workflow_dispatch:
 
 env:
